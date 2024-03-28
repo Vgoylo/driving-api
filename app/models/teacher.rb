@@ -6,4 +6,5 @@ class Teacher < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :teacher_time_slots, dependent: :destroy
+  has_one :teacher_profile, dependent: :destroy
 end

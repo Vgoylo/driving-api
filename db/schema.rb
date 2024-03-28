@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_27_191228) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_28_103507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_27_191228) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role"
+  end
+
+  create_table "teacher_profiles", force: :cascade do |t|
+    t.bigint "teacher_id", null: false
+    t.text "price", null: false
+    t.string "unp", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_teacher_profiles_on_teacher_id"
   end
 
   create_table "teacher_time_slots", force: :cascade do |t|
@@ -110,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_27_191228) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "teacher_profiles", "teachers"
   add_foreign_key "teacher_time_slots", "teachers"
   add_foreign_key "user_time_slots", "users"
 end
