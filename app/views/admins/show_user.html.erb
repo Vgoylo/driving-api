@@ -1,26 +1,27 @@
-<div class="table table-hover">
-  <table class="table">
-   <h1>Users</h1>
-    <thead class="table table-striped">
-      <tr>
-        <th scope="col">user_id</th><br>
-        <th scope="col">first_name</th><br>
-        <th scope="col">last_name</th>
-        <th scope="col">phone_number</th><br/>
-        <th scope="col">email</th>
-      </tr>
-    </thead>
-
-    <tbody class="table table-striped">
-      <% @users.each do |user| %>
+<div class="container">
+  <div class="table table-bordered">
+    <table class="table">
+    <h1 class='text-center'>Users</h1>
+      <thead class="table table-striped">
         <tr>
-          <td><%= user.id %></td>
-          <td><%= user.first_name %></td>
-          <td><%= user.last_name %></td>
-          <td><%= user.phone_number %></td>
-          <td><%= user.email %></td>
+          <th scope="col">user_id</th><br>
+          <th scope="col">first_name</th><br>
+          <th scope="col">last_name</th>
+          <th scope="col">phone_number</th><br/>
+          <th scope="col">email</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="table table-striped">
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.phone_number %></td>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
