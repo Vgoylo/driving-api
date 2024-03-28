@@ -31,7 +31,7 @@ puts "Users completed!"
     middle_name: "#{Faker::Name.name.split(' ').first}-#{Faker::Name.name.split(' ').last.slice(0..2)}",
     # date_of_birthday: "#{BIRTHDAY.year}-#{BIRTHDAY.month}-#{BIRTHDAY.day}",
     date_of_birthday: rand(Time.at(40.years.ago)..Time.at(20.years.ago)),
-    phone_number: "#{FakePhoneNumberGenerator.generate country: "BY"}",
+    phone_number: "+#{FakePhoneNumberGenerator.generate country: "BY"}",
     email: "#{Faker::Name.name.split(' ').first}@example.com",
     password: '123456',
     role: 0,
