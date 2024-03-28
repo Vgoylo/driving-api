@@ -1,13 +1,7 @@
 module Admins
   class ShowTeachers < BaseService
-    attr_accessor :teacher
-
-    def initialize()
-      @teacher = teacher
-    end
-
     def call
-      @teacher = Teacher.includes(:teacher_time_slots)
+      Teacher.includes(:teacher_profile)
     rescue StandardError
       raise StandardError
     end

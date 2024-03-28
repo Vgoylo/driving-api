@@ -1,26 +1,30 @@
-<div class="table table-hover">
-  <table class="table">
-   <h1>Teachers</h1>
-    <thead class="table table-striped">
-      <tr>
-        <th scope="col">teacher_id</th><br>
-        <th scope="col">first_name</th><br>
-        <th scope="col">last_name</th>
-        <th scope="col">phone_number</th><br/>
-        <th scope="col">email</th>
-      </tr>
-    </thead>
-
-    <tbody class="table table-striped">
-      <% @teacher.each do |teacher| %>
+<div class="container">
+  <div class="table table-bordered">
+    <table class="table">
+    <h1 class='text-center'>Teachers</h1>
+      <thead class="table table-striped">
         <tr>
-          <td><%= teacher.id %></td>
-          <td><%= teacher.first_name %></td>
-          <td><%= teacher.last_name %></td>
-          <td><%= teacher.phone_number %></td>
-          <td><%= teacher.email %></td>
+          <th scope="col">teacher_id</th><br>
+          <th scope="col">first_name</th><br>
+          <th scope="col">last_name</th>
+          <th scope="col">phone_number</th><br/>
+          <th scope="col">email</th>
+          <th scope="col">costs</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody class="table table-striped">
+        <% @teacher.each do |teacher| %>
+          <tr>
+            <td><%= teacher.id %></td>
+            <td><%= teacher.first_name %></td>
+            <td><%= teacher.last_name %></td>
+            <td><%= teacher.phone_number %></td>
+            <td><%= teacher.email %></td>
+            <td><%= teacher.teacher_profile.price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
