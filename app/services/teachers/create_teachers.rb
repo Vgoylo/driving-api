@@ -11,6 +11,8 @@ module Teachers
       @teacher.skip_password_validation = true
       @teacher.save!
 
+      @teacher
+
     rescue ActiveRecord::RecordInvalid => e
       raise e.message
     end

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :admins, only: %i[ index ] do
       end
+      resources :teachers, only: %i[index create  show ] do
+      end
     end
   end
 
