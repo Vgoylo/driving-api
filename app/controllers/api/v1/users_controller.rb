@@ -5,7 +5,7 @@ module Api
 
       skip_before_action :verify_authenticity_token
 
-      before_action :find_user, only: %i[ show ]
+      before_action :find_user, only: %i[ show update ]
 
       def index
         @users = User.includes(:user_time_slots)
@@ -13,7 +13,7 @@ module Api
       end
 
       def create
-        @user = Users::CreateUsers.call(user_params)
+        @user = Users::CreateUserService.call(user_params)
 
         render json: { status: 'SUCCESS', message: 'user was created successfully!', data: @user }, status: :created
       rescue ActionDispatch::Http::Parameters::ParseError, RuntimeError => e
@@ -24,10 +24,16 @@ module Api
         render json: @user, serializer: UserSerializer
       end
 
+      def update
+        @user = Users::UpdateUserService.call(@user, params)
+
+        render json: @user, serializer: UserSerializer
+      end
+
       private
 
       def user_params
-        params.require(:user).permit(:first_name, :last_name, :middle_name,
+        params.require(:user).permit(:id, :first_name, :last_name, :middle_name,
                                      :email, :phone_number, :role)
       end
 
