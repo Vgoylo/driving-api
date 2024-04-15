@@ -5,7 +5,7 @@ module Api
 
       skip_before_action :verify_authenticity_token
 
-      before_action :find_teacher, only: %i[show ]
+      before_action :find_teacher, only: %i[ show update ]
 
       def index
         @teachers = Teacher.includes(:teacher_profile)
@@ -13,7 +13,7 @@ module Api
       end
 
       def create
-        @teacher = Teachers::CreateTeachers.call(teacher_params)
+        @teacher = Teachers::CreateTeacherService.call(teacher_params)
 
         render json: { status: 'SUCCESS', message: 'teacher was created successfully!', data: @teacher }, status: :created
       rescue ActionDispatch::Http::Parameters::ParseError, RuntimeError => e
@@ -24,10 +24,16 @@ module Api
         render json: @teacher, serializer: TeacherSerializer
       end
 
+      def update
+        @teacher = Teachers::UpdateTeacherService.call(@teacher, params)
+
+        render json: @teacher, serializer: TeacherSerializer
+      end
+
       private
 
       def teacher_params
-        params.require(:teacher).permit(:first_name, :last_name, :middle_name,
+        params.require(:teacher).permit(:id, :first_name, :last_name, :middle_name,
                                         :email, :phone_number, :date_of_birthday, :role, teacher_profile_attributes: {})
       end
 
